@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.young.practice.dao.BoardDAO">
+ 	<select id="selectCount" resultType="int" parameterType="java.util.HashMap">
+ 		select count(*) from test
+ 	</select>
+ 	<select id="selectByIdx" parameterType="java.util.HashMap" resultType="BoardVO">
+ 		select * from test where idx=#{idx}
+ 	</select>
+ 	<select id="selectList" parameterType="java.util.HashMap" resultType="BoardVO">
+ 		<![CDATA[
+		select * from test order by idx desc
+		]]>
+ 	</select>
+ 	<insert id="insert" parameterType="BoardVO">
+ 		insert into test values
+ 			(test_idx_seq.nextval,#{subject},#{content}, SYSDATE)
+ 	</insert>
+ 	<update id="update" parameterType="BoardVO">
+ 		update test set subject=#{subject}, content=#{content}, SYSDATE,
+ 		where idx=#{idx}
+ 	</update>
+ 	<delete id="delete" parameterType="java.util.HashMap">
+ 		delete from test where idx=#{idx}
+ 	</delete>
+ </mapper>
